@@ -1,8 +1,8 @@
 <div id="principal" class="conteiner">
   <br />
-  <h1>Analisador léxico para JavaScript</h1>
+  <h1>Analisador léxico e Sintático</h1>
   <br />
-  <h4>Meu código fonte:</h4>
+  <h4>Minha Expressão:</h4>
 
   <!--  Entrada do código....................................................-->
   <div class="row">
@@ -11,13 +11,10 @@
       <textarea class="form-control" rows="20" cols="" id="comment" [(ngModel)] = "codFonte" > </textarea>
 
       <h5>Quantidade de caracteres: {{codFonte.length}}</h5>
-
-      <!--Importar arquivo fonte externo....................................-->
-      <!--input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
       
       <div class=text-right>
         <button type="button" class="btn btn-success" (click)="compiler()">Analisar Código</button>
-      </div-->
+      </div>
 
     </div>
   </div>
