@@ -25,10 +25,12 @@ export class AppComponent {
   
     //  Entrada do código fonte.
     codFonte: string = `x+(10-2)`;
+    errorSintaxe = "";
   
     token: Token[] = [];  //  Array com os tokens estraido do código fonte.
   
     compiler() {
+      this.errorSintaxe = "";
       this.token = [];
       this.estractWord();
     }
@@ -40,6 +42,7 @@ export class AppComponent {
       let fixColuna: number = 0;
       let qtdCaracters: number = this.codFonte.length;
       let palavra: string = "";
+      let parenteses: number = 0;
   
       //  Percorre as linhas do código fonte.
       for (let i = 0; i <= qtdCaracters; i++) {
@@ -77,6 +80,10 @@ export class AppComponent {
           }
   
           else if (this.codFonte.charAt(i) != " " && this.codFonte.charAt(i) != "\n") {
+            if(this.codFonte.charAt(i) == "(")
+              parenteses++;
+            if(this.codFonte.charAt(i) == ")")
+              parenteses--;
             if (palavra == "")
               this.token.push(new Token(this.codFonte.charAt(i), this.pesquisaReservada(this.codFonte.charAt(i)), linha + "," + coluna))
             else {
@@ -90,15 +97,15 @@ export class AppComponent {
         
         coluna++; //  Incrementa a coluna.
       }
-  
-      if (palavra != "") {
-        this.token.push(new Token(palavra, this.pesquisaReservada(palavra), linha + ", " + fixColuna))
-  
-        palavra = "";
-        fixColuna = 0;
+
+      if(parenteses != 0){
+        if(parenteses > 0)
+          this.errorSintaxe = "Error de sitáxe: Faltou fechar " + parenteses + " parenteses.";
+        else
+          this.errorSintaxe = "Error de sitáxe: Excesso de parenteses, " + parenteses * -1 + " parenteses.";
       }
+
   
-      this.IdIdentificador = 0;
     }
   
     pesquisaReservada(palavra) {

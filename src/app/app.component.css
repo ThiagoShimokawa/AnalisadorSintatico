@@ -2,3 +2,8 @@
     margin: 0 auto;
     width: 70%; /* Altere para o valor da largura desejada. */
   }
+
+  #error{
+    color: red;
+    font-family: arial, helvetica, sans-serif;
+  }
