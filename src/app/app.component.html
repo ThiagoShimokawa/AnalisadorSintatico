@@ -11,7 +11,7 @@
       <textarea class="form-control" rows="5" cols="" id="comment" [(ngModel)] = "codFonte" > </textarea>
 
       <h5>Quantidade de caracteres: {{codFonte.length}}</h5><br />
-      <h5 id="error">{{errorSintaxe}}</h5>
+      <p id="error">{{errorSintaxe}}</p>
       
       <div class=text-right>
         <button type="button" class="btn btn-success" (click)="compiler()">Analisar Código</button>

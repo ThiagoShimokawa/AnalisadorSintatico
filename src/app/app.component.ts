@@ -25,7 +25,7 @@ export class AppComponent {
   
     //  Entrada do código fonte.
     codFonte: string = `x+(10-2)`;
-    errorSintaxe = "";
+    errorSintaxe: string = ``;
   
     token: Token[] = [];  //  Array com os tokens estraido do código fonte.
   
@@ -94,16 +94,19 @@ export class AppComponent {
             }
   
           }
+
+          if(parenteses < 0)
+            this.errorSintaxe = "Error de sitáxe: Excesso de parenteses, " + parenteses * -1 + " parenteses. Na linha: "+ linha+", coluna: "+ coluna;
         
         coluna++; //  Incrementa a coluna.
       }
 
-      if(parenteses != 0){
+      //if(parenteses != 0){
         if(parenteses > 0)
-          this.errorSintaxe = "Error de sitáxe: Faltou fechar " + parenteses + " parenteses.";
-        else
-          this.errorSintaxe = "Error de sitáxe: Excesso de parenteses, " + parenteses * -1 + " parenteses.";
-      }
+          this.errorSintaxe += "Error de sitáxe: Faltou fechar " + parenteses + " parenteses.";
+        //else
+          //this.errorSintaxe = "Error de sitáxe: Excesso de parenteses, " + parenteses * -1 + " parenteses.";
+      //}
 
   
     }
